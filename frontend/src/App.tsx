@@ -8,6 +8,7 @@ import MainLayout from "./layout/MainLayout";
 
 import Dashboard from "./pages/Dashboard";
 import FraudMonitor from "./pages/FraudMonitor";
+import SimSwapDashboard from "./modules/sim-swap/pages/SimSwapDashboard";
 import AMLMonitor from "./pages/AMLMonitor";
 import ComplianceMonitor from "./pages/ComplianceMonitor";
 import UPIDashboard from "./modules/upi/pages/UPIDashboard";
@@ -46,6 +47,13 @@ function App() {
   path="/fraud-engine"
   element={<FraudDashboard />}
 />
+
+<Route
+  path="/sim-swap"
+  element={<SimSwapDashboard />}
+/>
+
+
         </Routes>
         
       </MainLayout>
