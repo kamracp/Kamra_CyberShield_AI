@@ -14,6 +14,9 @@ import AMLMonitor from "./pages/AMLMonitor";
 import ComplianceMonitor from "./pages/ComplianceMonitor";
 import UPIDashboard from "./modules/upi/pages/UPIDashboard";
 import FraudDashboard from "./modules/fraud/pages/FraudDashboard";
+import GeoRiskDashboard from "./modules/geo-risk/pages/GeoRiskDashboard";
+import ImpossibleTravelDashboard from "./modules/impossible-travel/pages/ImpossibleTravelDashboard";
+
 function App() {
   return (
     <BrowserRouter>
@@ -57,7 +60,14 @@ function App() {
   path="/velocity-risk"
   element={<VelocityRiskDashboard />}
 />
-
+<Route
+ path="/geo-risk"
+ element={<GeoRiskDashboard />}
+/>
+<Route
+  path="/impossible-travel"
+  element={<ImpossibleTravelDashboard />}
+/>
         </Routes>
         
       </MainLayout>
