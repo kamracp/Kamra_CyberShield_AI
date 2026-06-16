@@ -1,4 +1,7 @@
-
+import type {
+  GeoRiskInput,
+  GeoRiskResult,
+} from "../types/GeoRiskTypes";
 
 export function calculateGeoRisk(
   input: GeoRiskInput
