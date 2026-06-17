@@ -16,7 +16,7 @@ import UPIDashboard from "./modules/upi/pages/UPIDashboard";
 import FraudDashboard from "./modules/fraud/pages/FraudDashboard";
 import GeoRiskDashboard from "./modules/geo-risk/pages/GeoRiskDashboard";
 import ImpossibleTravelDashboard from "./modules/impossible-travel/pages/ImpossibleTravelDashboard";
-
+import DeepfakeDashboard from "./modules/deepfake/pages/DeepfakeDashboard";
 function App() {
   return (
     <BrowserRouter>
@@ -67,6 +67,10 @@ function App() {
 <Route
   path="/impossible-travel"
   element={<ImpossibleTravelDashboard />}
+/>
+<Route
+  path="/deepfake"
+  element={<DeepfakeDashboard />}
 />
         </Routes>
         

@@ -6,6 +6,7 @@ import { calculateVoiceCloneRisk } from "../calculations/VoiceCloneEngine";
 import { calculateDeepfakeRisk } from "../calculations/DeepfakeRiskEngine";
 
 import DeepfakeResultCard from "../components/DeepfakeResultCard";
+import DeepfakeUploadPanel from "../components/DeepfakeUploadPanel";
 
 import type {
   DeepfakeRiskResult,
@@ -45,6 +46,8 @@ function DeepfakeDashboard() {
       <h1>
         Deepfake Shield Dashboard
       </h1>
+
+      <DeepfakeUploadPanel />
 
       <button
         onClick={runDeepfakeAnalysis}
