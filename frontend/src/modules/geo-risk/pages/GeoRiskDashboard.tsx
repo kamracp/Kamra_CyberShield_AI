@@ -4,8 +4,7 @@ import type {
   GeoRiskInput,
   GeoRiskResult,
 } from "../types/GeoRiskTypes";
-import { calculateGeoRisk }
-from "../calculations/GeoRiskEngine";
+import { analyzeGeoRisk } from "../../../api/riskApi";
 
 import GeoRiskResultCard
 from "../components/GeoRiskResultCard";
@@ -23,20 +22,31 @@ const GeoRiskDashboard: React.FC = () => {
 
   const [result, setResult] =
     useState<GeoRiskResult | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleCheck = () => {
-    const calculatedResult =
-      calculateGeoRisk(input);
-
-    setResult(calculatedResult);
+  const handleCheck = async () => {
+    setLoading(true);
+    setError("");
+    try {
+      const data = await analyzeGeoRisk(input);
+      setResult(data);
+    } catch (e: any) {
+      setError(e.message || "Backend se connect nahi ho paaya");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <div className="p-6">
 
-      <h1 className="text-3xl font-bold mb-6">
+      <h1 className="text-3xl font-bold mb-1">
         🌍 Geo Risk Engine
       </h1>
+      <p className="text-gray-500 text-sm mb-6">
+        Backend API se real-time evaluation
+      </p>
 
       <div className="bg-white rounded-xl shadow-lg p-6">
 
@@ -164,12 +174,15 @@ const GeoRiskDashboard: React.FC = () => {
 
         <button
           onClick={handleCheck}
+          disabled={loading}
           className="mt-6 bg-blue-600
           text-white px-6 py-3 rounded-lg
           hover:bg-blue-700"
         >
-          Run Geo Risk Check
+          {loading ? "Analyzing..." : "Run Geo Risk Check"}
         </button>
+
+        {error && <p className="text-red-600 text-sm mt-3">{error}</p>}
 
       </div>
 

@@ -1,80 +1,27 @@
-
 import { useState } from "react";
 
 function DeepfakeUploadPanel() {
-  const [imageFile, setImageFile] =
-    useState<File | null>(null);
-
-  const [audioFile, setAudioFile] =
-    useState<File | null>(null);
+  const [imageFile, setImageFile] = useState<File | null>(null);
+  const [audioFile, setAudioFile] = useState<File | null>(null);
 
   return (
-    <div
-      style={{
-        border: "1px solid #ddd",
-        padding: "20px",
-        borderRadius: "8px",
-        marginTop: "20px",
-      }}
-    >
-      <h2>Deepfake Upload Center</h2>
+    <div className="bg-white rounded-xl shadow-lg p-6">
+      <h2 className="text-lg font-bold mb-4">Upload Center (optional reference files)</h2>
 
-      <div style={{ marginBottom: "15px" }}>
-        <label>
-          Upload Face Image
-        </label>
-
-        <br />
-
-        <input
-          type="file"
-          accept=".jpg,.jpeg,.png"
-          onChange={(e) =>
-            setImageFile(
-              e.target.files?.[0] || null
-            )
-          }
-        />
-      </div>
-
-      <div style={{ marginBottom: "15px" }}>
-        <label>
-          Upload Voice Sample
-        </label>
-
-        <br />
-
-        <input
-          type="file"
-          accept=".wav,.mp3"
-          onChange={(e) =>
-            setAudioFile(
-              e.target.files?.[0] || null
-            )
-          }
-        />
-      </div>
-
-      <div>
-        <p>
-          Image:
-          {" "}
-          {imageFile
-            ? imageFile.name
-            : "Not Selected"}
-        </p>
-
-        <p>
-          Audio:
-          {" "}
-          {audioFile
-            ? audioFile.name
-            : "Not Selected"}
-        </p>
+      <div className="grid md:grid-cols-2 gap-4">
+        <div>
+          <label className="block font-semibold mb-2">Face Image</label>
+          <input type="file" accept=".jpg,.jpeg,.png" onChange={(e) => setImageFile(e.target.files?.[0] || null)} />
+          <p className="text-gray-500 text-sm mt-1">{imageFile ? imageFile.name : "Not selected"}</p>
+        </div>
+        <div>
+          <label className="block font-semibold mb-2">Voice Sample</label>
+          <input type="file" accept=".wav,.mp3" onChange={(e) => setAudioFile(e.target.files?.[0] || null)} />
+          <p className="text-gray-500 text-sm mt-1">{audioFile ? audioFile.name : "Not selected"}</p>
+        </div>
       </div>
     </div>
   );
 }
 
 export default DeepfakeUploadPanel;
-

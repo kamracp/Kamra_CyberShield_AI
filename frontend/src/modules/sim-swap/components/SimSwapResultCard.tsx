@@ -4,43 +4,43 @@ interface Props {
   result: SimSwapResult | null;
 }
 
-function SimSwapResultCard({
-  result,
-}: Props) {
+function SimSwapResultCard({ result }: Props) {
   if (!result) return null;
 
+  let color = "#22c55e";
+  if (result.riskLevel === "WARNING") color = "#eab308";
+  if (result.riskLevel === "CRITICAL") color = "#f97316";
+  if (result.riskLevel === "BLOCK") color = "#dc2626";
+
   return (
-    <div
-      style={{
-        marginTop: "20px",
-        padding: "20px",
-        border: "1px solid #ccc",
-        borderRadius: "10px",
-      }}
-    >
-      <h2>SIM Swap Risk Analysis</h2>
+    <div className="bg-white shadow-lg rounded-xl p-6 mt-6">
+      <h2 className="text-xl font-bold mb-4">SIM Swap Risk Analysis</h2>
 
-      <p>
-        <strong>Risk Score:</strong>{" "}
-        {result.score}
-      </p>
+      <div className="grid md:grid-cols-2 gap-4">
+        <div className="border rounded-lg p-4">
+          <p className="text-gray-500">Risk Score</p>
+          <h3 className="text-3xl font-bold">{result.score}</h3>
+        </div>
+        <div className="border rounded-lg p-4">
+          <p className="text-gray-500">Risk Level</p>
+          <span className="badge" style={{ background: color }}>{result.riskLevel}</span>
+        </div>
+      </div>
 
-      <p>
-        <strong>Risk Level:</strong>{" "}
-        {result.riskLevel}
-      </p>
-
-      <h3>Reasons</h3>
-
-      <ul>
-        {result.reasons.map(
-          (reason, index) => (
-            <li key={index}>
-              {reason}
-            </li>
-          )
+      <div className="mt-6">
+        <h3 className="font-bold text-lg mb-3">Reasons</h3>
+        {result.reasons.length === 0 ? (
+          <div className="text-green-600 font-semibold">No Risk Detected</div>
+        ) : (
+          <ul className="space-y-2">
+            {result.reasons.map((reason, index) => (
+              <li key={index} className="bg-red-50 border border-red-200 rounded-lg p-2 text-sm">
+                ⚠️ {reason}
+              </li>
+            ))}
+          </ul>
         )}
-      </ul>
+      </div>
     </div>
   );
 }

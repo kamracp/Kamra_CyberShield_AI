@@ -1,52 +1,15 @@
+import KPICard from "../components/KPICard";
+
 function AMLMonitor() {
   return (
     <div>
-      <h1>💰 AML Monitoring Center</h1>
+      <h1 className="text-2xl font-bold mb-1" style={{ color: "#0f172a" }}>💰 AML Monitoring Center</h1>
+      <p className="text-gray-500 text-sm mb-6">Anti Money Laundering Dashboard</p>
 
-      <h2>
-        Anti Money Laundering Dashboard
-      </h2>
-
-      <div
-        style={{
-          display: "flex",
-          gap: "20px",
-          marginTop: "20px",
-          flexWrap: "wrap",
-        }}
-      >
-        <div
-          style={{
-            background: "#1e293b",
-            padding: "20px",
-            borderRadius: "10px",
-          }}
-        >
-          <h3>Suspicious Accounts</h3>
-          <h1>18</h1>
-        </div>
-
-        <div
-          style={{
-            background: "#1e293b",
-            padding: "20px",
-            borderRadius: "10px",
-          }}
-        >
-          <h3>Mule Accounts</h3>
-          <h1>7</h1>
-        </div>
-
-        <div
-          style={{
-            background: "#1e293b",
-            padding: "20px",
-            borderRadius: "10px",
-          }}
-        >
-          <h3>AML Alerts</h3>
-          <h1>34</h1>
-        </div>
+      <div className="flex flex-wrap gap-4">
+        <KPICard title="Suspicious Accounts" value="18" accent="#f97316" />
+        <KPICard title="Mule Accounts" value="7" accent="#dc2626" />
+        <KPICard title="AML Alerts" value="34" accent="#eab308" />
       </div>
     </div>
   );

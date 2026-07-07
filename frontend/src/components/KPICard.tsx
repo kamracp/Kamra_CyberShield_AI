@@ -1,24 +1,19 @@
 interface Props {
   title: string;
   value: string;
+  accent?: string;
 }
 
-function KPICard({
-  title,
-  value,
-}: Props) {
+function KPICard({ title, value, accent = "#2563eb" }: Props) {
   return (
     <div
-      style={{
-        background: "#1e293b",
-        padding: "20px",
-        borderRadius: "10px",
-        minWidth: "220px",
-      }}
+      className="kpi-card"
+      style={{ borderLeft: `4px solid ${accent}` }}
     >
-      <h3>{title}</h3>
-
-      <h1>{value}</h1>
+      <p className="text-gray-500 text-sm font-semibold">{title}</p>
+      <h1 className="text-3xl font-bold" style={{ color: "#0f172a", margin: "6px 0 0" }}>
+        {value}
+      </h1>
     </div>
   );
 }

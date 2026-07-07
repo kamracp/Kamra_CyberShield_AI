@@ -3,44 +3,15 @@ interface Props {
   status: string;
 }
 
-function RiskResultCard({
-  score,
-  status,
-}: Props) {
+function RiskResultCard({ score, status }: Props) {
   let badgeColor = "#22c55e";
-
-  if (status === "WARNING")
-    badgeColor = "#eab308";
-
-  if (status === "CRITICAL")
-    badgeColor = "#ef4444";
+  if (status === "WARNING") badgeColor = "#eab308";
+  if (status === "CRITICAL") badgeColor = "#ef4444";
 
   return (
-    <div
-      style={{
-        marginTop: "30px",
-        padding: "20px",
-        borderRadius: "10px",
-        border: "1px solid #334155",
-        background: "#1e293b",
-      }}
-    >
-      <h2>
-        Risk Score: {score}
-      </h2>
-
-      <div
-        style={{
-          background: badgeColor,
-          padding: "10px",
-          borderRadius: "8px",
-          width: "150px",
-          textAlign: "center",
-          fontWeight: "bold",
-        }}
-      >
-        {status}
-      </div>
+    <div className="bg-white shadow-lg rounded-xl p-6 mt-6">
+      <h2 className="text-xl font-bold mb-3">Risk Score: {score}</h2>
+      <span className="badge" style={{ background: badgeColor }}>{status}</span>
     </div>
   );
 }

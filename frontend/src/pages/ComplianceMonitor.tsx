@@ -1,52 +1,15 @@
+import KPICard from "../components/KPICard";
+
 function ComplianceMonitor() {
   return (
     <div>
-      <h1>🛡️ Compliance Center</h1>
+      <h1 className="text-2xl font-bold mb-1" style={{ color: "#0f172a" }}>🛡️ Compliance Center</h1>
+      <p className="text-gray-500 text-sm mb-6">RBI • NPCI • PCI-DSS Compliance</p>
 
-      <h2>
-        RBI • NPCI • PCI-DSS Compliance
-      </h2>
-
-      <div
-        style={{
-          display: "flex",
-          gap: "20px",
-          marginTop: "20px",
-          flexWrap: "wrap",
-        }}
-      >
-        <div
-          style={{
-            background: "#1e293b",
-            padding: "20px",
-            borderRadius: "10px",
-          }}
-        >
-          <h3>Compliance Score</h3>
-          <h1>92%</h1>
-        </div>
-
-        <div
-          style={{
-            background: "#1e293b",
-            padding: "20px",
-            borderRadius: "10px",
-          }}
-        >
-          <h3>Open Findings</h3>
-          <h1>14</h1>
-        </div>
-
-        <div
-          style={{
-            background: "#1e293b",
-            padding: "20px",
-            borderRadius: "10px",
-          }}
-        >
-          <h3>Audit Status</h3>
-          <h1>PASS</h1>
-        </div>
+      <div className="flex flex-wrap gap-4">
+        <KPICard title="Compliance Score" value="92%" accent="#16a34a" />
+        <KPICard title="Open Findings" value="14" accent="#f97316" />
+        <KPICard title="Audit Status" value="PASS" accent="#16a34a" />
       </div>
     </div>
   );

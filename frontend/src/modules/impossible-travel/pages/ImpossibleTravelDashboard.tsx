@@ -5,8 +5,7 @@ import type {
   ImpossibleTravelResult,
 } from "../types/ImpossibleTravelTypes";
 
-import { calculateImpossibleTravel }
-from "../calculations/ImpossibleTravelEngine";
+import { analyzeImpossibleTravel } from "../../../api/riskApi";
 
 import ImpossibleTravelResultCard
 from "../components/ImpossibleTravelResultCard";
@@ -23,20 +22,31 @@ const ImpossibleTravelDashboard: React.FC = () => {
 
   const [result, setResult] =
     useState<ImpossibleTravelResult | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleCheck = () => {
-    const calculatedResult =
-      calculateImpossibleTravel(input);
-
-    setResult(calculatedResult);
+  const handleCheck = async () => {
+    setLoading(true);
+    setError("");
+    try {
+      const data = await analyzeImpossibleTravel(input);
+      setResult(data);
+    } catch (e: any) {
+      setError(e.message || "Backend se connect nahi ho paaya");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <div className="p-6">
 
-      <h1 className="text-3xl font-bold mb-6">
+      <h1 className="text-3xl font-bold mb-1">
         ✈️ Impossible Travel Detection
       </h1>
+      <p className="text-gray-500 text-sm mb-6">
+        Backend API se real-time evaluation
+      </p>
 
       <div className="bg-white rounded-xl shadow-lg p-6">
 
@@ -124,6 +134,7 @@ const ImpossibleTravelDashboard: React.FC = () => {
 
         <button
           onClick={handleCheck}
+          disabled={loading}
           className="
           mt-6
           bg-blue-600
@@ -133,8 +144,10 @@ const ImpossibleTravelDashboard: React.FC = () => {
           rounded-lg
           hover:bg-blue-700"
         >
-          Run Travel Risk Check
+          {loading ? "Analyzing..." : "Run Travel Risk Check"}
         </button>
+
+        {error && <p className="text-red-600 text-sm mt-3">{error}</p>}
 
       </div>
 

@@ -1,16 +1,19 @@
 function Topbar() {
   return (
     <div
+      className="flex items-center justify-between px-6"
       style={{
         background: "#1e293b",
-        padding: "15px",
-        borderRadius: "10px",
-        marginBottom: "20px",
+        height: "64px",
+        flexShrink: 0,
       }}
     >
-      <h2>
-        Banking Fraud Detection Center
+      <h2 className="text-white text-lg font-bold">
+        🛡️ Banking Fraud Detection Center
       </h2>
+      <span className="text-gray-400 text-sm">
+        CyberShield AI — Risk Intelligence Suite
+      </span>
     </div>
   );
 }
